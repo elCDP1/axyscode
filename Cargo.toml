@@ -1,0 +1,19 @@
+[package]
+name = "axyscode"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow     = "1"
+crossterm  = "0.28"
+ratatui    = "0.28"
+tui-textarea = { version = "0.6", features = ["crossterm", "search"] }
+
+# Binario final más pequeño y algo más rápido para el uso normal de una
+# herramienta de línea de comandos; el coste (build de release más lento) no
+# importa aquí porque no es un ciclo de compilación que se repita a menudo.
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+codegen-units = 1
